@@ -51,6 +51,7 @@ app.delete('/todos/:id', (req, res) => {
   }).catch(err => res.status(400).send());
 });
 
+// PATCH /todos/:id
 app.patch('/todos/:id', (req, res) => {
   const id = req.params.id;
   const body = _.pick(req.body, ['text', 'completed']);
