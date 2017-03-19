@@ -12,6 +12,10 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
 // POST /todos
 app.post('/todos', (req, res) => {
   const todo = new Todo({
