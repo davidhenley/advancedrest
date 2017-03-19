@@ -1,3 +1,5 @@
+require('./config/config.js');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -74,7 +76,7 @@ app.patch('/todos/:id', (req, res) => {
     .catch(err => res.status(400).send());
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Magic happens on port ${port}.`);
 });
