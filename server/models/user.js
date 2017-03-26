@@ -53,6 +53,22 @@ UserSchema.methods.generateAuthToken = function() {
   });
 };
 
+// Find user by token
+UserSchema.statics.findByToken = function(token) {
+  const User = this;
+  var decoded;
+  try {
+    decoded = jwt.verify(token, 'secretcode');
+  } catch (e) {
+    return Promise.reject();
+  }
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.access': 'auth',
+    'tokens.token': token
+  });
+};
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = { User };
